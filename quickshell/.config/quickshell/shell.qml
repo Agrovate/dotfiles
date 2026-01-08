@@ -224,7 +224,7 @@ ShellRoot {
                     Item { width: 8 }
 
                     Repeater {
-                        model: 9
+                        model: 5
 
                         Rectangle {
                             Layout.preferredWidth: 20
