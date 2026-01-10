@@ -39,6 +39,7 @@ vim.pack.add({
 		{src = "https://github.com/nvim-lua/plenary.nvim"},
 		{src = "https://github.com/nvim-telescope/telescope.nvim"},
 		{src = "https://github.com/stevearc/oil.nvim"},
+		{src = "https://github.com/EdenEast/nightfox.nvim"},
 })
 require("oil").setup({
     keymaps = {
@@ -47,7 +48,7 @@ require("oil").setup({
 })
 
 --THEMES!!!!
-vim.cmd('colorscheme gruvbox')
+vim.cmd('colorscheme nordfox')
 require("lualine").setup({
 		options = {
 				theme = 'auto'
