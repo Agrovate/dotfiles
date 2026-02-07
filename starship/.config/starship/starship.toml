@@ -1,0 +1,11 @@
+[c]
+symbol = ""
+detect_extensions = ["c"]
+detect_files = ["!*.cpp", "!*.hpp", "!*.cc"]
+format = "via [$symbol]($style) "
+
+[custom.cpp]
+symbol = " "
+extensions = ["cpp", "cc", "cxx"]
+style = "bold blue"
+format = "via [$symbol]($style) "
