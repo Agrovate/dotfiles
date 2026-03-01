@@ -14,6 +14,7 @@ vim.pack.add({
     {src = "https://github.com/EdenEast/nightfox.nvim"},
     {src = "https://github.com/nvim-mini/mini.nvim"},
     {src = "https://github.com/nvim-mini/mini.nvim"},
+    {src = "https://github.com/lewis6991/gitsigns.nvim"},
 
     --LSP installs
     {src = "https://github.com/neovim/nvim-lspconfig"},
@@ -32,3 +33,4 @@ require("plugins.treesitter")
 require("lsp.blink")
 require("lsp.rustacean")
 require("keybinds")
+require("gitsigns").setup({})
