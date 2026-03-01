@@ -1,20 +1,12 @@
 {
   "plugins": {
-    "LuaSnip": {
-      "rev": "3732756",
-      "src": "https://github.com/L3MON4D3/LuaSnip"
-    },
     "blink.cmp": {
-      "rev": "40380e7",
-      "src": "https://github.com/Saghen/blink.cmp"
+      "rev": "b650e976a927be6b46487a0a610b75af111376c5",
+      "src": "https://github.com/saghen/blink.cmp"
     },
     "dressing.nvim": {
       "rev": "2d7c2db",
       "src": "https://github.com/stevearc/dressing.nvim"
-    },
-    "friendly-snippets": {
-      "rev": "572f566",
-      "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gruvbox.nvim": {
       "rev": "5e0a460",
@@ -29,17 +21,13 @@
       "rev": "3946f01",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
-    "mason-lspconfig.nvim": {
-      "rev": "d7b5feb",
-      "src": "https://github.com/mason-org/mason-lspconfig.nvim"
-    },
-    "mason-tool-installer.nvim": {
-      "rev": "517ef59",
-      "src": "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim"
-    },
     "mason.nvim": {
-      "rev": "ad7146a",
+      "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
       "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "mini.nvim": {
+      "rev": "a95dc67ecff78de138543a20c20f29f47111b122",
+      "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neorg": {
       "rev": "de0bf99a95f4053862f0e63c8083b5e14f3ad6ec",
@@ -55,12 +43,7 @@
     },
     "nvim-treesitter": {
       "rev": "42fc28ba",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
-      "version": "'master'"
-    },
-    "nvim-web-devicons": {
-      "rev": "8dcb311",
-      "src": "https://github.com/nvim-tree/nvim-web-devicons"
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "oil.nvim": {
       "rev": "7e1cd77",
@@ -69,6 +52,10 @@
     "plenary.nvim": {
       "rev": "b9fd522",
       "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "rustaceanvim": {
+      "rev": "d50597d482a6f44ddfc54d1af2f69f052053b4de",
+      "src": "https://github.com/mrcjkb/rustaceanvim"
     },
     "telescope.nvim": {
       "rev": "1d7729c",

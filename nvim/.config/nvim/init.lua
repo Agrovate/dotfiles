@@ -23,24 +23,50 @@ vim.opt.colorcolumn = "80"
 
 vim.opt.packpath:prepend(vim.fn.stdpath('data') .. '/site')
 vim.pack.add({
-		{src = "https://github.com/nvim-treesitter/nvim-treesitter", version = 'master'},
-		{src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2"},
-		{src = "https://github.com/ellisonleao/gruvbox.nvim"},
-		{src = "https://github.com/nvim-lualine/lualine.nvim"},
-		{src = "https://github.com/nvim-tree/nvim-web-devicons"},
-		{ src = "https://github.com/neovim/nvim-lspconfig" },
-		{ src = "https://github.com/mason-org/mason.nvim" },
-		{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
-		{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
-		{ src = "https://github.com/L3MON4D3/LuaSnip" },
-		{ src = "https://github.com/rafamadriz/friendly-snippets" },
-		{ src = "https://github.com/Saghen/blink.cmp" },
-		{ src = "https://github.com/stevearc/dressing.nvim" },
-		{src = "https://github.com/nvim-lua/plenary.nvim"},
-		{src = "https://github.com/nvim-telescope/telescope.nvim"},
-		{src = "https://github.com/stevearc/oil.nvim"},
-		{src = "https://github.com/EdenEast/nightfox.nvim"},
+    {
+        src = "https://github.com/nvim-treesitter/nvim-treesitter",
+        branch = "main",
+        build = ":TSUpdate"
+    },
+    {src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2"},
+    {src = "https://github.com/ellisonleao/gruvbox.nvim"},
+    {src = "https://github.com/nvim-lualine/lualine.nvim"},
+    {src = "https://github.com/stevearc/dressing.nvim" },
+    {src = "https://github.com/nvim-lua/plenary.nvim"},
+    {src = "https://github.com/nvim-telescope/telescope.nvim"},
+    {src = "https://github.com/stevearc/oil.nvim"},
+    {src = "https://github.com/EdenEast/nightfox.nvim"},
+    {src = "https://github.com/nvim-mini/mini.nvim"},
+    {src = "https://github.com/nvim-mini/mini.nvim"},
+    {src = "https://www.github.com/ibhagwan/fzf-lua"},
+
+    --LSP installs
+    {src = "https://github.com/neovim/nvim-lspconfig"},
+    {src = "https://github.com/mason-org/mason.nvim"},
+    {src = "https://github.com/saghen/blink.cmp"},
+    {src = "https://github.com/mrcjkb/rustaceanvim"},
+
 })
+
+require("mini.ai").setup({})
+require("mini.comment").setup({})
+require("mini.move").setup({})
+require("mini.surround").setup({})
+require("mini.cursorword").setup({})
+require("mini.indentscope").setup({})
+require("mini.pairs").setup({})
+require("mini.trailspace").setup({})
+require("mini.bufremove").setup({})
+require("mini.notify").setup({
+    lsp_progress = {
+        enable = false,
+  },
+})
+require("mini.icons").setup({})
+require("mini.snippets").setup({})
+
+require("fzf-lua").setup({})
+
 require("oil").setup({
     keymaps = {
 				[".."] = { "actions.parent", mode = "n" },
@@ -56,118 +82,116 @@ require("lualine").setup({
 })
 
 
-
 require('nvim-treesitter.configs').setup({
-		ensure_installed = { "c", "lua", "vim", "markdown", "rust" },
-		auto_install = false,
-		sync_install = false,
-		highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = false,
-		},
-		indent = {
-				enable = true,
-		},
-		ignore_install = {},
-		modules = {},
+    ensure_installed = { "c", "lua", "vim", "markdown", "rust", "cpp", "python", "go" },
+    auto_install = false,
+    sync_install = false,
+    highlight = {
+            enable = true,
+            additional_vim_regex_highlighting = false,
+    },
+    indent = {
+            enable = true,
+    },
+    ignore_install = {},
+    modules = {},
 })
 
 
--- ──────────────── LSP SETTINGS ────────────────
+-- ============================================================================
+-- LSP, Linting, Formatting & Completion
+-- ============================================================================
+require("mason").setup({})
+local diagnostic_signs = {
+	Error = " ",
+	Warn = " ",
+	Hint = "",
+	Info = "",
+}
 
--- Diagnostics UI tweaks
 vim.diagnostic.config({
-  virtual_text = true,
-  signs = true,
-  update_in_insert = false,
-  underline = true,
-  severity_sort = true,
+	virtual_text = { prefix = "●", spacing = 4 },
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = diagnostic_signs.Error,
+			[vim.diagnostic.severity.WARN] = diagnostic_signs.Warn,
+			[vim.diagnostic.severity.INFO] = diagnostic_signs.Info,
+			[vim.diagnostic.severity.HINT] = diagnostic_signs.Hint,
+		},
+	},
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+	float = {
+		border = "rounded",
+		source = true,
+		header = "",
+		prefix = "",
+		focusable = false,
+		style = "minimal",
+	},
 })
+
 
 require("blink.cmp").setup({
-  signature = { enabled = true },
-  sources = {
-    default = { "lsp", "path", "buffer", "snippets" },
-  },
-})
-
-
--- Default capabilities (for blink.cmp)
-local capabilities = require("blink.cmp").get_lsp_capabilities()
-
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
-
--- Global on_attach for keymaps
-local on_attach = function(_, bufnr)
-  local map = function(mode, lhs, rhs, desc)
-    vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
-  end
-
-  map("n", "gd", vim.lsp.buf.definition, "Go to definition")
-  map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-  map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
-  map("n", "go", vim.lsp.buf.type_definition, "Go to type")
-  map("n", "gr", vim.lsp.buf.references, "Find references")
-  map("n", "K", vim.lsp.buf.hover, "Hover")
-  map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
-  map("n", "<leader>ca", vim.lsp.buf.code_action, "Code actions")
-  map("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, "Format file")
-end
-
--- Mason
-require("mason").setup()
-
--- Make sure mason registry is loaded BEFORE installer
-pcall(function()
-  require("mason-registry").refresh()
-end)
-
-require("mason-lspconfig").setup()
-
--- Mason ensures servers are installed
-require("mason-tool-installer").setup({
-  ensure_installed = {
-    "lua-language-server",
-    "rust-analyzer",
-    "pyright",
-    "bash-language-server",
-    "html-lsp",
-    "css-lsp",
-    "json-lsp",
-    "typescript-language-server",
-  }
-})
-
-
--- Enable LSPs with defaults
-vim.lsp.enable("lua_ls", {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      diagnostics = { globals = { "vim" } },
-      workspace = { checkThirdParty = false },
+    version = "1.*",
+    build = "cargo build --release",
+	keymap = {
+		preset = "none",
+		["<C-Space>"] = { "show", "hide" },
+		["<C-y>"] = { "accept", "fallback" },
+		["<C-j>"] = { "select_next", "fallback" },
+		["<C-k>"] = { "select_prev", "fallback" },
+		["<Tab>"] = { "snippet_forward", "fallback" },
+		["<S-Tab>"] = { "snippet_backward", "fallback" },
+	},
+	appearance = { nerd_font_variant = "mono" },
+	completion = {
+        menu = {
+            auto_show = false,
+            auto_show_delay_ms = 50,
+        },
+        ghost_text = {enabled = true}
     },
+    snippets  = {preset = "mini_snippets"},
+	sources = { default = { "lsp", "path", "buffer", "snippets" } },
+	fuzzy = {
+		implementation = "prefer_rust",
+		prebuilt_binaries = { download = true },
+	},
+})
+
+
+vim.lsp.config["*"] = {
+	capabilities = require("blink.cmp").get_lsp_capabilities(),
+}
+vim.lsp.config("pyright", {})
+vim.lsp.config("bashls", {})
+vim.lsp.config("ts_ls", {})
+vim.lsp.config("gopls", {})
+vim.lsp.config("clangd", {})
+vim.lsp.config("clangd", {})
+vim.lsp.config('rust_analyzer', {})
+
+
+vim.lsp.enable({
+	"lua_ls",
+	"pyright",
+	"bashls",
+	"ts_ls",
+	"gopls",
+	"clangd",
+    "rust_analyzer",
+})
+
+vim.g.rustaceanvim = {
+  server = {
+    capabilities = require('blink.cmp').get_lsp_capabilities(),
+    on_attach = function(client, bufnr)
+      -- Optional: add your Rust-specific keymaps here
+    end,
   },
-})
-
-vim.lsp.enable("rust_analyzer", {
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-vim.lsp.enable("pyright", {
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-vim.lsp.enable("ts_ls", { on_attach = on_attach, capabilities = capabilities })
-vim.lsp.enable("bashls", { on_attach = on_attach, capabilities = capabilities })
-vim.lsp.enable("html", { on_attach = on_attach, capabilities = capabilities })
-vim.lsp.enable("cssls", { on_attach = on_attach, capabilities = capabilities })
-vim.lsp.enable("jsonls", { on_attach = on_attach, capabilities = capabilities })
-
-
+}
 
 -- Custom Keybinds
 vim.keymap.set('v', '<leader>y', '"+y', { desc = "Yank to system clipboard" })
