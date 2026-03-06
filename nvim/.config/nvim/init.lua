@@ -12,8 +12,7 @@ vim.pack.add({
     {src = "https://github.com/nvim-telescope/telescope.nvim"},
     {src = "https://github.com/stevearc/oil.nvim"},
     {src = "https://github.com/EdenEast/nightfox.nvim"},
-    {src = "https://github.com/nvim-mini/mini.nvim"},
-    {src = "https://github.com/nvim-mini/mini.nvim"},
+    {src = "https://github.com/nvim-mini/mini.nvim", name="mini.nvim"},
     {src = "https://github.com/lewis6991/gitsigns.nvim"},
 
     --LSP installs
@@ -24,6 +23,7 @@ vim.pack.add({
 
 })
 
+vim.cmd("packloadall")
 
 require("options")
 require("theme")
