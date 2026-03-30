@@ -2,6 +2,8 @@
 
 alias cd="z"
 alias ls="eza"
+alias asus-per="asusctl profile set Performance"
+alias asus-bal="asusctl profile set Balanced"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
