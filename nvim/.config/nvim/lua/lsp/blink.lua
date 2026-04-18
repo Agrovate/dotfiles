@@ -51,7 +51,7 @@ require("blink.cmp").setup({
             auto_show = false,
             auto_show_delay_ms = 50,
         },
-        ghost_text = {enabled = true}
+        ghost_text = {enabled = false}
     },
     snippets  = {preset = "mini_snippets"},
 	sources = { default = { "lsp", "path", "buffer", "snippets" } },
