@@ -22,7 +22,20 @@
       );
   in {
     packages = forAllSystems (
-      pkgs: {
+      pkgs: let
+        system = pkgs.stdenv.hostPlatform.system;
+
+        inputConfig = builtins.readFile ./.config/i3/config;
+
+        updatedConfig =
+          builtins.replaceStrings
+          ["alacritty"]
+          [(nixpkgs.lib.getExe ghostty.packages.${system}.default)]
+          inputConfig;
+
+        finalConfig =
+          pkgs.writeText "i3-config" updatedConfig;
+      in {
         default = inputs.wrappers.lib.wrapPackage {
           inherit pkgs;
 
