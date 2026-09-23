@@ -7,7 +7,6 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.cursorline = true
 vim.opt.winborder = "rounded"
-vim.opt.smartindent = true
 vim.opt.guicursor = ""
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -20,4 +19,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
-vim.opt.packpath:prepend(vim.fn.stdpath('data') .. '/site')
+vim.opt.packpath:prepend(vim.fn.stdpath("data") .. "/site")
+vim.opt.guicursor = "a:block-blinkon100-blinkoff100-Cursor/lCursor"
+vim.opt.exrc = true
