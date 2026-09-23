@@ -40,7 +40,7 @@
           ];
 
           flags = {
-            "-c" = ./config;
+            "-c" = ./.config/i3/config;
           };
         };
       }
