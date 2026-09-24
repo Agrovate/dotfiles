@@ -1,6 +1,9 @@
 set $mod Mod4
 font pango:MesloLGS Nerd Font Mono 10
 
+exec --no-startup-id setxkbmap -option ctrl:swapcaps
+
+
 set $term alacritty
 set $menu dmenu_run -fn 'MesloLGS Nerd Font Mono-10' -nb '#2e3440' -nf '#d8dee9' -sb '#4c566a' -sf '#eceff4'
 
