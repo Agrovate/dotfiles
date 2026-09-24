@@ -1,6 +1,7 @@
 set $mod Mod4
 font pango:MesloLGS Nerd Font Mono 10
 
+# Swapping Ctrl and Caps Lock
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
 
 
@@ -52,6 +53,9 @@ bindsym $mod+Shift+r restart
 
 # Drag windows with titlebar
 tiling_drag modifier titlebar
+
+# Removing the title bar for windows
+for_window [class=".*"] title_format " "
 
 # Bar
 bar {
