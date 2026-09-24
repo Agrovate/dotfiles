@@ -1,0 +1,34 @@
+# Gentoo Inspired Dark Theme
+
+[colors.primary]
+background = "#1a1625" # bg_dark
+foreground = "#f4f2f9" # text_light
+
+[colors.cursor]
+text = "#1a1625"       # bg_dark
+cursor = "#7a5ade"     # gentoo_purple
+
+[colors.selection]
+text = "#f4f2f9"       # text_light
+background = "#262135" # bg_surface
+
+[colors.normal]
+black = "#1a1625"      # bg_dark
+red = "#da59f7"        # alert_purple
+green = "#b8a4f9"      # gentoo_lavender
+yellow = "#dddaec"     # gentoo_dark
+blue = "#7a5ade"       # gentoo_purple
+magenta = "#da59f7"    # alert_purple
+cyan = "#b8a4f9"       # gentoo_lavender
+white = "#f4f2f9"      # text_light
+
+[colors.bright]
+black = "#262135"      # bg_surface
+red = "#da59f7"        # alert_purple (bright variant)
+green = "#b8a4f9"      # gentoo_lavender
+yellow = "#dddaec"     # gentoo_dark
+blue = "#7a5ade"       # gentoo_purple
+magenta = "#da59f7"    # alert_purple
+cyan = "#a19bb6"       # text_dim
+white = "#f4f2f9"      # text_light
+

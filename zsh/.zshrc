@@ -1,4 +1,6 @@
-. "$HOME/.cargo/env"
+if [[ -f "$HOME/.cargo/env" ]]; then
+    . "$HOME/.cargo/env"
+fi
 
 alias cd="z"
 alias ls="eza"
@@ -10,5 +12,9 @@ eval "$(zoxide init zsh)"
 export MANPAGER="nvim +Man!"
 export GROFF_NO_SGR=1
 
-
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+for dir in $fpath; do
+    if [[ -f "$dir/zsh-syntax-highlighting.zsh" ]]; then
+        source "$dir/zsh-syntax-highlighting.zsh"
+        break
+    fi
+done

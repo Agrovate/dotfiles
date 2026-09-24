@@ -2,6 +2,7 @@ set $mod Mod4
 font pango:MesloLGS Nerd Font Mono 10
 
 # Swapping Ctrl and Caps Lock
+exec --no-startup-id picom
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
 
 
@@ -57,8 +58,53 @@ tiling_drag modifier titlebar
 # Removing the title bar for windows
 for_window [class=".*"] title_format " "
 
-# Bar
+set $gentoo_purple    #7a5ade
+set $gentoo_dark      #dddaec
+set $gentoo_lavender  #b8a4f9
+set $bg_dark          #1a1625
+set $bg_surface       #262135
+set $text_light       #f4f2f9
+set $text_dim         #a19bb6
+set $alert_purple     #da59f7
+
+# --- Window Gaps Configuration ---
+# Creates clean spacing to show off your desktop background
+gaps inner 12
+gaps outer 6
+smart_gaps on
+
+# --- Window Decorations & Borders ---
+# Thin borders without bulky titlebars for a clean look
+for_window [class="^.*"] border pixel 5
+default_border pixel 2
+default_floating_border pixel 2
+
+# --- Window Class Colors ---
+# Class           Border          Background      Text            Indicator       Child Border
+client.focused    $gentoo_purple  $gentoo_purple  $text_light     $gentoo_lavender $gentoo_purple
+client.unfocused  $bg_surface     $bg_surface     $text_dim       $bg_dark        $bg_surface
+client.focused_inactive $bg_surface $bg_surface   $text_dim       $bg_dark        $bg_surface
+client.urgent     $alert_purple   $alert_purple   $text_light     $alert_purple   $alert_purple
+
+# --- i3bar Status Bar Theme ---
+# A matching bottom status bar layout
 bar {
-        status_command i3status
+    position bottom
+    status_command i3status
+    workspace_buttons yes
+    strip_workspace_numbers yes
+
+    colors {
+        background $bg_dark
+        statusline $text_light
+        separator  $gentoo_lavender
+
+        # Workspace Colors
+        #                  Border          Background      Text
+        focused_workspace  $gentoo_purple  $gentoo_purple  $text_light
+        active_workspace   $bg_surface     $bg_surface     $text_light
+        inactive_workspace $bg_dark        $bg_dark        $text_dim
+        urgent_workspace   $alert_purple   $alert_purple   $text_light
+    }
 }
 
