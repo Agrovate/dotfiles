@@ -12,9 +12,21 @@ eval "$(zoxide init zsh)"
 export MANPAGER="nvim +Man!"
 export GROFF_NO_SGR=1
 
+export PATH="$HOME/neovim/bin:$PATH"
+
 for dir in $fpath; do
     if [[ -f "$dir/zsh-syntax-highlighting.zsh" ]]; then
         source "$dir/zsh-syntax-highlighting.zsh"
         break
     fi
 done
+
+
+for dir in $fpath; do
+    if [[ -f "$dir/zsh-autosuggestions.zsh" ]]; then
+        source "$dir/zsh-autosuggestions.zsh"
+        break
+    fi
+done
+
+

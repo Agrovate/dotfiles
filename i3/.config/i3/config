@@ -4,6 +4,7 @@ font pango:MesloLGS Nerd Font Mono 10
 # Swapping Ctrl and Caps Lock
 exec --no-startup-id picom
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
+exec --no-startup-id xwallpaper --zoom ~/Wallpapers/larry_and_tux.png
 
 
 set $term alacritty
