@@ -1,0 +1,22 @@
+IMAPAccount outlook
+Host outlook.office365.com
+User nishantullal@outlook.com
+PassCmd "/usr/share/neomutt/oauth2/mutt_oauth2.py --provider microsoft --email nishantullal@outlook.com --format token ~/.config/neomutt/tokens/nishant_outlook.gpg"
+TLSType IMAPS
+AuthMechs XOAUTH2
+
+IMAPStore outlook-remote
+Account outlook
+
+MaildirStore outlook-local
+SubFolders Verbatim
+Path ~/Mail/outlook/
+Inbox ~/Mail/outlook/INBOX/
+
+Channel outlook-sync
+Far :outlook-remote:
+Near :outlook-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *

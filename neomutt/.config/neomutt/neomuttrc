@@ -1,0 +1,14 @@
+set folder = "~/Mail"
+
+unmailboxes *
+mailboxes +outlook/INBOX +outlook/Sent +outlook/Drafts
+
+set spoolfile = "+outlook/INBOX"
+
+folder-hook outlook/* "source ~/.config/neomutt/accounts/outlook"
+
+source ~/.config/neomutt/accounts/outlook
+
+macro index,pager S "<shell-escape>mbsync -a<enter><sync-mailbox>" "Sync all mail profiles"
+
+set sidebar_visible = yes

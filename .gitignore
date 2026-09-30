@@ -1,0 +1,2 @@
+neomutt/.config/neomutt/tokens/*
+!neomutt/.config/neomutt/tokens/.gitkeep

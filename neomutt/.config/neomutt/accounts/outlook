@@ -1,0 +1,19 @@
+set from = "nishantullal@outlook.com"
+set use_from = yes
+set envelope_from = yes
+
+
+set spoolfile = "+outlook/INBOX"
+set postponed = "+outlook/Drafts"
+set record    = "+outlook/Sent"
+
+#set smtp_authenticators = "oauthbearer:xoauth2"
+#set smtp_url = "smtp://nishantullal@outlook.com@smtp.office365.com:587/"
+#set smtp_oauth_refresh_command = "$imap_oauth_refresh_command"
+
+#set imap_user = "nishantullal@outlook.com"
+#set imap_authenticators = "oauthbearer:xoauth2"
+#set imap_oauth_refresh_command="/usr/share/neomutt/oauth2/mutt_oauth2.py --provider microsoft --email nishantullal@outlook.com --format token ~/.mutt/tokens/nishant_outlook.gpg"
+
+set sendmail = "/usr/bin/msmtp -a outlook"
+

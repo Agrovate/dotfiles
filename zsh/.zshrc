@@ -4,6 +4,7 @@ fi
 
 alias cd="z"
 alias ls="eza"
+alias vim="nvim"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
@@ -12,7 +13,7 @@ eval "$(zoxide init zsh)"
 export MANPAGER="nvim +Man!"
 export GROFF_NO_SGR=1
 
-export PATH="$HOME/neovim/bin:$PATH"
+export PATH="$HOME/Applications/neovim/bin:$PATH"
 
 for dir in $fpath; do
     if [[ -f "$dir/zsh-syntax-highlighting.zsh" ]]; then
@@ -29,4 +30,4 @@ for dir in $fpath; do
     fi
 done
 
-
+export GPG_TTY="$(tty)"
