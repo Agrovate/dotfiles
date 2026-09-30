@@ -28,5 +28,5 @@ vim.pack.add({
 
 require("jupynvim").setup({
 	log_level = "info",
-	image_renderer = "placeholder",
+	image_renderer = "chafa",
 })
